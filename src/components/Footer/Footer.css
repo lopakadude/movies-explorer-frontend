@@ -1,0 +1,143 @@
+.footer {
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 172px;
+}
+
+@media screen and (max-width:560px) {
+	.footer {
+		height: 253px;
+	}
+}
+
+.footer__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	padding: 78px 70px 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+@media screen and (min-width: 1280px) {
+	.footer__container {
+		width: 1280px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.footer__container {
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 80px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.footer__container {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 79px;
+	}
+}
+
+.footer__title {
+	padding: 0;
+	width: 100%;
+	color: #8B8B8B;
+	font-size: 13px;
+	font-weight: 400;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__title {
+		font-size: 12px;
+	}
+}
+
+.footer__title::after {
+	content: "";
+	display: block;
+	width: 100%;
+	max-width: 1140px;
+	height: 1px;
+	background-color: #424242;
+	box-sizing: border-box;
+	margin-top: 20px;
+	margin-bottom: 19px;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__title::after {
+		margin-top: 21px;
+		margin-bottom: 30px;
+	}
+}
+
+.footer__bottom-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__bottom-container {
+		flex-direction: column-reverse;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.footer__projects {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 30px;
+	}
+}
+
+.footer__year {
+	padding: 0;
+	margin: 0;
+	color: #FFF;
+	font-size: 13px;
+	font-weight: 400;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__year {
+		font-size: 12px;
+	}
+}
+
+.footer__link {
+	padding: 0;
+	margin: 0;
+	color: #FFF;
+	font-size: 13px;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__link {
+		font-size: 12px;
+	}
+}
+
+.footer__link:last-of-type {
+	margin-left: 20px;
+}
+
+@media screen and (max-width: 560px) {
+	.footer__link:last-of-type {
+		margin-left: 0;
+		margin-top: 12px;
+	}
+}
