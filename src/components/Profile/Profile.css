@@ -75,7 +75,7 @@
 }
 
 .profile__input:focus {
-	outline: none;
+	outline: green solid 1px;
 }
 
 .profile__input-error {

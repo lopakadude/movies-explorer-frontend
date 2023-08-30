@@ -108,7 +108,7 @@
 }
 
 .auth__input:focus {
-	outline: none;
+	outline: green solid 1px;
 }
 
 .auth__input::placeholder {
