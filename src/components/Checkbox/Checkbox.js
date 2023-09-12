@@ -1,10 +1,16 @@
 import React from "react";
 
 
-function Checkbox() {
+function Checkbox(props) {
 	return (
-		<label className="checkbox-label" for='checkbox'>
-			<input type="checkbox" className='checkbox-input' id='checkbox' />
+		<label className="checkbox-label">
+			<input
+				type="checkbox"
+				className='checkbox-input'
+				value={props.value}
+        checked={props.value}
+				onChange={props.onChange}
+			/>
 			<span className="checkbox-name">Короткометражки</span>
 		</label>
 	)

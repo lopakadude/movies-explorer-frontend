@@ -7,18 +7,29 @@
 	cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1280px) {
+	.card-movie {
+		width: 364px;
+	}
+}
+
+@media screen and (max-width: 1240px) {
 	.card-movie {
 		width: 339px;
 		height: 262px;
 	}
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
 	.card-movie {
 		width: 300px;
 		height: 237px;
 	}
+}
+
+.card-movie__trailer-link {
+	text-decoration: none;
+	color: #FFF;
 }
 
 .card-movie__photo {
@@ -27,9 +38,11 @@
 	display: block;
 	padding: 0;
 	margin: 0 0 9px 0;
+	object-fit: contain;
+	object-position: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1240px) {
 	.card-movie__photo {
 		height: 190px;
 		margin-bottom: 8px;
@@ -53,7 +66,7 @@
 	position: relative;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1240px) {
 	.card-movie__container {
 		margin-bottom: 7px;
 	}
@@ -106,6 +119,12 @@
 	background-position: center;
 	opacity: 0;
 	transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+	.card-movie__delete-button {
+		opacity: 1;
+	}
 }
 
 .card-movie__delete-button_active {

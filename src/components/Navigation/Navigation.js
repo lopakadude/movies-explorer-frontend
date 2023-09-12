@@ -26,11 +26,11 @@ function Navigation() {
 				<Link to="/profile" replace className="navigation__link navigation__link_type_profile link" >
 					<div className="navigation__container-profile">
 						<p className="navigation__link-text">Аккаунт</p>
-						<div className="navigation__button-profile"></div>
+						<div className={`${location.pathname === '/' ? 'navigation__button-profile_blue' : ''} navigation__button-profile`}></div>
 					</div>
 				</Link>
 			</nav>
-			<button type="button" className="navigation-button-open button" onClick={openMenu}></button>
+			<button type="button" className={`${location.pathname === '/' ? 'navigation-button-open_blue' : ''} navigation-button-open button`} onClick={openMenu}></button>
 			<div className={`navigation-overlay ${isMenuOpened ? 'navigation-overlay_active' : ''}`} onClick={closeMenu}></div>
 		</>
 	)

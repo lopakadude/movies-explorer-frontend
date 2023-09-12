@@ -1,5 +1,3 @@
-.profile {}
-
 .profile__container {
 	width: 410px;
 }
@@ -41,6 +39,7 @@
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	position: relative;
 }
 
 .profile__field:first-of-type::after {
@@ -110,6 +109,10 @@
 	border: none;
 }
 
+.profile__button-submit_disabled {
+	color: #FF3055;
+}
+
 @media screen and (max-width: 560px) {
 	.profile__button-submit {
 		font-size: 12px;
@@ -148,4 +151,40 @@
 	.profile__button-exit {
 		font-size: 12px;
 	}
+}
+
+.profile__input-error {
+	display: block;
+	color: #FF3055;
+	max-width: 100%;
+	overflow: hidden;
+	text-align: right;
+	font-family: Inter;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	position: absolute;
+	right: 0;
+	top: 17px;
+}
+
+.profile__container-submit {
+	position: relative;
+
+}
+
+.profile__submit-error {
+	display: block;
+	color: #FF004C;
+	text-align: center;
+	font-size: 11px;
+	font-weight: 400;
+	position: absolute;
+	top: -25px;
+	left: 27px;
+}
+
+.profile__submit-error_disabled {
+	display: none;
 }

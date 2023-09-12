@@ -180,6 +180,16 @@
 	background-size: 10px;
 }
 
+.navigation__button-profile_blue {
+	background-color: #0F4157;
+}
+
+@media screen and (max-width:768px) {
+	.navigation__button-profile_blue {
+		background-color: #313131;
+	}
+}
+
 .navigation-button-open {
 	display: none;
 	z-index: 1;
@@ -197,6 +207,9 @@
 		background-position: center;
 		background-size: cover;
 		display: block;
+	}
+	.navigation-button-open_blue {
+		background-color: #073042;
 	}
 }
 

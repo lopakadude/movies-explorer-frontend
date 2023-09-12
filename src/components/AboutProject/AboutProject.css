@@ -3,6 +3,11 @@
 	min-height: 496px;
 }
 
+.section {
+	display: flex;
+	justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
 	.about-project {
 		min-height: 493px;
@@ -17,28 +22,26 @@
 
 .section-container {
 	width: 100%;
-	padding: 0 70px;
-	margin: 0px auto;
-	box-sizing: border-box;
+	margin: 0px 70px;
 }
 
 @media screen and (min-width: 1280px) {
 	.section-container {
-		width: 1280px;
+		width: 1140px;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.section-container {
-		padding-left: 50px;
-		padding-right: 50px;
+		margin-left: 50px;
+		margin-right: 50px;
 	}
 }
 
 @media screen and (max-width: 560px) {
 	.section-container {
-		padding-left: 18px;
-		padding-right: 18px;
+		margin-left: 18px;
+		margin-right: 18px;
 	}
 }
 

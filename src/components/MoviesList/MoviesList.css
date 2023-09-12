@@ -3,6 +3,8 @@
 	padding: 70px 70px 0;
 	margin: 0px auto;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 }
 
 @media screen and (min-width: 1280px) {
@@ -11,14 +13,14 @@
 	}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1240px) {
 	.movies {
 		padding-left: 30px;
 		padding-right: 30px;
 	}
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
 	.movies {
 		padding-left: 10px;
 		padding-right: 10px;
@@ -31,24 +33,23 @@
 	padding: 0 0 10px 0;
 	display: grid;
 	justify-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(364px, 1fr));
-	grid-template-rows: repeat(auto-fit, 1fr);
+	grid-template-columns: repeat(3, 364px);
 	gap: 37px 24px;
 	width: 100%;
 	margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
 	.movies__list {
-		grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
+		grid-template-columns: repeat(2, 339px);
 		gap: 30px;
 		padding-bottom: 30px;
 	}
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
 	.movies__list {
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: 300px;
 		gap: 14px;
 		padding-bottom: 26px;
 	}
@@ -65,4 +66,10 @@
 	font-weight: 500;
 	padding: 0;
 	margin: 51px auto 80px;
+}
+
+.movies__message {
+	text-align: center;
+	padding: 0;
+	margin: 0;
 }

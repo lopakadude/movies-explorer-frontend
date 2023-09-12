@@ -16,8 +16,8 @@
 
 @media screen and (max-width: 560px) {
 	.about-me__container {
-		padding-left: 14px;
-		padding-right: 14px;
+		margin-left: 14px;
+		margin-right: 14px;
 	}
 }
 
