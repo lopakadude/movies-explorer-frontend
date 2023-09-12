@@ -57,8 +57,11 @@ function Profile(props) {
 							readOnly={!isActive}
 							value={values.name ? values.name : ''}
 							name='name'
+							pattern="[A-Za-zА-Яа-яЁё\s\-]+"
+							minLength="2"
+							maxLength="30"
 							onChange={handleChange}
-							></input>
+						></input>
 						<span
 							className="profile__input-error"
 							id='error-profile-name'
@@ -78,7 +81,8 @@ function Profile(props) {
 							value={values.email ? values.email : ''}
 							name='email'
 							onChange={handleChange}
-							></input>
+							pattern="^[a-zA-Z0-9+_.\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$"
+						></input>
 						<span
 							className="profile__input-error"
 							id='error-profile-email'

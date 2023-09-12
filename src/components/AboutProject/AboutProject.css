@@ -1,6 +1,6 @@
 .about-project {
 	width: 100%;
-	min-height: 496px;
+	min-height: 608px;
 }
 
 .section {
@@ -10,13 +10,13 @@
 
 @media screen and (max-width: 768px) {
 	.about-project {
-		min-height: 493px;
+		min-height: 585px;
 	}
 }
 
 @media screen and (max-width: 560px) {
 	.about-project {
-		min-height: 571px;
+		min-height: 641px;
 	}
 }
 
@@ -145,8 +145,15 @@
 	margin: 0 0 26px 0;
 }
 
+@media screen and (max-width: 912px) {
+	.about-project__heading {
+		font-size: 16px;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.about-project__heading {
+		font-size: 20px;
 		margin-bottom: 22px;
 	}
 }

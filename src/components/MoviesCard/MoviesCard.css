@@ -13,7 +13,7 @@
 	}
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1279px) {
 	.card-movie {
 		width: 339px;
 		height: 262px;
@@ -38,7 +38,7 @@
 	display: block;
 	padding: 0;
 	margin: 0 0 9px 0;
-	object-fit: contain;
+	object-fit: cover;
 	object-position: center;
 }
 
