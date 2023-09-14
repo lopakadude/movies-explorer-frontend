@@ -9,6 +9,7 @@ function MoviesList(props) {
 	const location = useLocation();
 	const { cardsColumns, cardsRows, setCardsRows, renderList } = useMoviesListSize();
 	const properMoviesAmount = cardsRows * cardsColumns;
+	const filteredMovies = props.filteredMovies
 	const buttonMoreIsActive = (location.pathname === '/movies') && props.filteredMovies && (props.filteredMovies.length > properMoviesAmount);
 
 
@@ -34,9 +35,9 @@ function MoviesList(props) {
 
 	useEffect(() => {
 		if (props.filteredMovies) {
-			renderList()
+			renderList();
 		}
-	}, [props.filteredMovies])
+	}, [filteredMovies])
 
 	function handleButtonMore() {
 		if (cardsColumns === 1) {
@@ -44,7 +45,6 @@ function MoviesList(props) {
 		} else { setCardsRows(cardsRows + 1); }
 	}
 
-	console.log(properMoviesAmount);
 	return (
 		<section className="movies">
 			{location.pathname === '/movies' && props.isLoading === false ? (

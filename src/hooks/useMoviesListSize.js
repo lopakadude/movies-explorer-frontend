@@ -5,7 +5,6 @@ export function useMoviesListSize() {
 	const [cardsRows, setCardsRows] = useState(4);
 
 	function renderList() {
-		console.log('ok');
 		const windowWidth = window.innerWidth;
 		if (windowWidth >= 1279) {
 			setCardsColumns(3);

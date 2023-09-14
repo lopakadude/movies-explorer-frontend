@@ -87,10 +87,6 @@ function App() {
 			.finally(() => setIsLoading(false));
 	}
 
-	useEffect(() => {
-		console.log(isLoading)
-	}, [ ]);
-
 	function handleSignOut() {
 		localStorage.clear();
 		setIsLoggedIn(false);

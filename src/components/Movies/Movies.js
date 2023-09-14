@@ -28,10 +28,8 @@ const handleCheckBox = () => {
 			}
 		} else { props.setFilteredMovies([]) }
 		props.setIsLoading(false);
-	}, [ isShortFilm, props.filteredMovies]);
+	}, [ isShortFilm]);
 
-
-	console.log("movies");
 	return (
 		<main className="main">
 			<Search
