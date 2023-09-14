@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import useFormWithValidation from "../../hooks/useForm";
 
 function Register(props) {
@@ -17,6 +17,8 @@ function Register(props) {
 	}
 
 	return (
+		<>
+		{!props.isLoggedIn ?
 		<section className="auth">
 			<div className="auth__container">
 				<Link to="/" className="auth__logo-link link"><img src={logo} alt="Логотип проекта" className="auth__logo" /></Link>
@@ -101,6 +103,8 @@ function Register(props) {
 				</form>
 			</div>
 		</section>
+		: <Navigate to="/" replace />}
+		</>
 	)
 }
 

@@ -5,17 +5,17 @@ import Preloader from "../Preloader/Preloader";
 
 function SavedMovies(props) {
 	const [filteredOwnMovies, setFilteredOwnMovies] = useState([]);
-	const [textNotification, setTextNotification] = useState('');
+const [isShortFilm, setIsShortFilm] = useState(false);
 	const savedMovies = props.savedMovies;
-	const isShortFilm = props.isShortFilm
+
+	const handleCheckBox = () => {
+		setIsShortFilm(!isShortFilm);
+	};
 
 	const handleSearchMovies = (textSearch) => {
 		if (savedMovies) {
 			props.setTextSearch("");
-			setFilteredOwnMovies(props.filterMovies(savedMovies, textSearch));
-			if (props.filterMovies(savedMovies, textSearch).length === 0 ) {
-				setTextNotification("Ничего не найдено");
-			}
+			setFilteredOwnMovies(isShortFilm ? props.filterShortMovies(props.filterMovies(savedMovies, textSearch)) : props.filterMovies(savedMovies, textSearch));
 		};
 		props.setTextSearch(textSearch);
 	}
@@ -23,16 +23,10 @@ function SavedMovies(props) {
 	useEffect(() => {
 		if (savedMovies) {
 			const filteredOwnMovies = props.filterMovies(props.savedMovies, props.textSearch);
-			if (savedMovies.length === 0 ) {
-				setTextNotification("Нет сохраненных фильмов");
-			}
-			if (filteredOwnMovies.length !== 0 && savedMovies.length !== 0) {
-				setTextNotification("");
-			}
-			setFilteredOwnMovies(isShortFilm ? props.filterShortMovies(savedMovies) : savedMovies);
+			setFilteredOwnMovies(isShortFilm ? props.filterShortMovies(filteredOwnMovies) : filteredOwnMovies);
 			return;
 		}
-	}, [savedMovies, isShortFilm]);
+	}, [ savedMovies, isShortFilm]);
 
 	return (
 		<main className="main">
@@ -40,14 +34,15 @@ function SavedMovies(props) {
 				onSubmit={handleSearchMovies}
 				isLoading={props.isLoading}
 				isShortFilm={props.isShortFilm}
-				onChange={props.handleCheckBox} />
+				onChange={handleCheckBox} />
 			{props.isLoading && <Preloader />}
 			<MoviesList
 				filteredOwnMovies={filteredOwnMovies}
 				savedMovies={savedMovies}
 				setSavedMovies={props.setSavedMovies}
+				isLoading={props.isLoading}
+				setIsLoading={props.setIsLoading}
 			/>
-			{textNotification  && <p className="movies__message">{textNotification ? textNotification : null}</p>}
 			
 		</main>
 	)

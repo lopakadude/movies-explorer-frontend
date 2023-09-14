@@ -23,11 +23,9 @@ function App() {
 	const [errorSubmit, setErrorSubmit] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [savedMovies, setSavedMovies] = useState([]);
-	const checkIsShortFilms =
-		JSON.parse(localStorage.getItem("isShortFilm")) ?? false;
-	const [isShortFilm, setIsShortFilm] = useState(checkIsShortFilms);
 	const [textSearch, setTextSearch] = useState("");
 	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [isSuccess, setIsSuccess] = useState(false);
 	const location = useLocation();
 	const navigate = useNavigate();
 	const allMovies = JSON.parse(localStorage.getItem("allMovies")) ?? [];
@@ -89,9 +87,14 @@ function App() {
 			.finally(() => setIsLoading(false));
 	}
 
+	useEffect(() => {
+		console.log(isLoading)
+	}, [ ]);
+
 	function handleSignOut() {
 		localStorage.clear();
 		setIsLoggedIn(false);
+		setIsLoading(false);
 		navigate('/', { replace: true });
 	}
 
@@ -105,6 +108,7 @@ function App() {
 			.setUserInfo({ name: name, email: email })
 			.then((res) => {
 				setCurrentUser(res.data);
+				setIsSuccess('Данные изменены');
 			})
 			.catch((error) => {
 				setErrorSubmit(error.message);
@@ -113,9 +117,9 @@ function App() {
 	}
 
 	const findMovies = (req) => {
-		setIsLoading(true);
 		setTextSearch("");
 		if (!allMovies.length) {
+			setIsLoading(true);
 			beatFilmApi
 				.getMovies()
 				.then((movies) => {
@@ -131,7 +135,10 @@ function App() {
 		} else {
 			handleFilterMovies(allMovies, req);
 		}
+
+		if (location.pathname === '/movies') {
 		localStorage.setItem("request", req);
+		}
 	};
 
 
@@ -158,11 +165,6 @@ function App() {
 			}
 		}
 		return filteredMovies;
-	};
-
-	const handleCheckBox = () => {
-		setIsShortFilm(!isShortFilm);
-		localStorage.setItem("isShortFilm", JSON.stringify(!isShortFilm));
 	};
 
 	const handleFilterMovies = (movies, request, isShort) => {
@@ -201,11 +203,11 @@ function App() {
 									savedMovies={savedMovies}
 									setSavedMovies={setSavedMovies}
 									setFilteredMovies={setFilteredMovies}
-									isShortFilm={isShortFilm}
-									handleCheckBox={handleCheckBox}
 									textSearch={textSearch}
 									setTextSearch={setTextSearch}
-									filterShortMovies={filterShortMovies} />
+									filterShortMovies={filterShortMovies}
+									isLoading={isLoading}
+									setIsLoading={setIsLoading} />
 								<Footer />
 							</>
 						</ProtectedRoute>
@@ -219,12 +221,12 @@ function App() {
 								<SavedMovies
 									filterMovies={filterMovies}
 									filterShortMovies={filterShortMovies}
-									isShortFilm={isShortFilm}
-									handleCheckBox={handleCheckBox}
 									textSearch={textSearch}
 									setTextSearch={setTextSearch}
 									savedMovies={savedMovies}
 									setSavedMovies={setSavedMovies}
+									isLoading={isLoading}
+									setIsLoading={setIsLoading}
 								/>
 								<Footer />
 							</>
@@ -240,7 +242,10 @@ function App() {
 									logout={handleSignOut}
 									onChangeInfo={handleEditProfile}
 									errorSubmit={errorSubmit}
-									isLoading={isLoading} />
+									isLoading={isLoading}
+									setIsLoading={setIsLoading}
+									isSuccess={isSuccess}
+									setIsSuccess={setIsSuccess}/>
 							</>
 						</ProtectedRoute>
 					)} />
@@ -249,14 +254,17 @@ function App() {
 							onRegister={handleRegistrationSubmit}
 							errorSubmit={errorSubmit}
 							isLoading={isLoading}
-							clearError={clearError} />
+							clearError={clearError} 
+							isLoggedIn={isLoggedIn}/>
+							
 					} />
 					<Route path='/sign-in' element={
 						<Login
 							onLogin={handleLoginSubmit}
 							errorSubmit={errorSubmit}
 							isLoading={isLoading}
-							clearError={clearError} />
+							clearError={clearError} 
+							isLoggedIn={isLoggedIn}/>
 					} />
 					<Route path='*' element={
 						<NotFound />

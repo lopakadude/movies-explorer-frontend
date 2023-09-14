@@ -24,6 +24,7 @@ function Profile(props) {
 			email: values.email,
 		});
 		handleActiveOff();
+		props.setIsSuccess(false);
 	}
 
 	useEffect(() => {
@@ -31,7 +32,16 @@ function Profile(props) {
 			name: currentUser.name,
 			email: currentUser.email,
 		});
+	
 	}, [setValues, currentUser.name, currentUser.email]);
+
+	useEffect(() => {
+		console.log(props.isLoading)
+	});
+
+	useEffect(() => {
+		props.setIsSuccess(false);
+	}, []);
 
 	function handleActiveOn() {
 		setIsActive(true);
@@ -89,20 +99,21 @@ function Profile(props) {
 						>{errors.email}</span>
 					</div>
 					<div className="profile__container-options">
+					<span
+								className={`${props.isSuccess ? 'profile__submit_success' : ''} profile__submit-error`}
+								id='error-profile-submit'>{props.isSuccess ? props.isSuccess : props.errorSubmit}</span>
 						{isActive ? <div className='profile__container-submit'>
-							<span
-								className={`${props.errorSubmit ? 'profile__submit-error_disabled' : ''} profile__submit-error`}
-								id='error-profile-submit'>{props.errorSubmit}</span>
 							<button
 								type="submit"
-								className={`${(!isButtonAble || props.isLoading) ? 'profile__button-submit_disabled' : ''} profile__button-submit button`}
-								disabled={(!isButtonAble || props.isLoading) ? true : false}>
-								{props.isLoading ? "Внесение изменений..." : "Сохранить"}</button>
-						</div> :
+								className={`${(!isButtonAble) ? 'profile__button-submit_disabled' : ''} profile__button-submit button`}
+								disabled={(!isButtonAble) ? true : false}>
+								Сохранить
+							</button>
+						</div> : !props.isLoading ?
 							<>
 								<button type="button" className="profile__button-edit button" onClick={handleActiveOn}>Редактировать</button>
 								<button type="button" className="profile__button-exit button" onClick={props.logout}>Выйти из аккаунта</button>
-							</>}
+							</> : null}
 					</div>
 				</div>
 			</form>

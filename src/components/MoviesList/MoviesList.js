@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useLocation } from 'react-router-dom';
-import useMoviesListSize from "../../hooks/useMoviesListSize";
+import { useMoviesListSize } from "../../hooks/useMoviesListSize";
 import { api } from '../../utils/API';
 
 
 function MoviesList(props) {
 	const location = useLocation();
-	const { cardsColumns, cardsRows, setCardsRows, MoviesList } = useMoviesListSize();
+	const { cardsColumns, cardsRows, setCardsRows, renderList } = useMoviesListSize();
 	const properMoviesAmount = cardsRows * cardsColumns;
 	const buttonMoreIsActive = (location.pathname === '/movies') && props.filteredMovies && (props.filteredMovies.length > properMoviesAmount);
 
-	const filteredMovies = props.filteredMovies;
 
 	useEffect(() => {
 		function handleResize() {
-			setTimeout(MoviesList, 300);
+			setTimeout(renderList, 300);
 		}
 		window.addEventListener("resize", handleResize);
 		return function cleanup() {
@@ -24,13 +23,20 @@ function MoviesList(props) {
 	});
 
 	useEffect(() => {
+		props.setIsLoading(true);
 		api.getLikeMovies()
 			.then((res) => {
 				props.setSavedMovies(res.data);
 			})
 			.catch((err) => console.log(`Ошибка: ${err}`))
+			.finally(() => props.setIsLoading(false));
 	}, [])
 
+	useEffect(() => {
+		if (props.filteredMovies) {
+			renderList()
+		}
+	}, [props.filteredMovies])
 
 	function handleButtonMore() {
 		if (cardsColumns === 1) {
@@ -38,13 +44,13 @@ function MoviesList(props) {
 		} else { setCardsRows(cardsRows + 1); }
 	}
 
-
+	console.log(properMoviesAmount);
 	return (
 		<section className="movies">
-			{location.pathname === '/movies' ? (
+			{location.pathname === '/movies' && props.isLoading === false ? (
 			<ul className="movies__list">
-				{filteredMovies ?
-					filteredMovies.map((card, i) => {
+				{props.filteredMovies ?
+					props.filteredMovies.map((card, i) => {
 						if (i < properMoviesAmount) {
 							return < MoviesCard
 								card={card}
@@ -56,7 +62,7 @@ function MoviesList(props) {
 					}) : null
 				}
 			</ul>
-			)  : (<ul className="movies__list">
+			)  :  props.isLoading === false ? (<ul className="movies__list">
 				{props.filteredOwnMovies ?
 					props.filteredOwnMovies.map((card, i) => {
 						if (i < properMoviesAmount) {
@@ -69,7 +75,7 @@ function MoviesList(props) {
 						}
 					}) : null
 				}
-			</ul>)}
+			</ul>) : null}
 
 			{buttonMoreIsActive ? <button className="movies__button-more button" onClick={handleButtonMore}>Ещё</button> : null}
 		</section>

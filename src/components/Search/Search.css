@@ -35,6 +35,7 @@
 
 .search__field {
 	width: 100%;
+	position: relative;
 }
 
 .search__input {
@@ -53,9 +54,10 @@
 }
 
 @media screen and (max-width: 560px) {
-		.search__input {
-			font-size: 11px;
-		}
+	.search__input {
+		font-size: 11px;
+		padding-left: 19px;
+	}
 }
 
 .search__input::placeholder {
@@ -86,4 +88,22 @@
 	width: 100%;
 	height: 1px;
 	background-color: #424242;
+}
+
+.search__message {
+	display: block;
+	color: #EE3465;
+	font-size: 10px;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 55px;
+	left: 22px;
+}
+
+@media screen and (max-width: 560px) {
+	.search__message {
+		left: 19px;
+	}
 }

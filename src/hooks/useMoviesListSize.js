@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export default function useMoviesListSize() {
+export function useMoviesListSize() {
 	const [cardsColumns, setCardsColumns] = useState(3);
 	const [cardsRows, setCardsRows] = useState(4);
 
-	function MoviesList() {
+	function renderList() {
+		console.log('ok');
 		const windowWidth = window.innerWidth;
 		if (windowWidth >= 1279) {
 			setCardsColumns(3);
@@ -18,5 +19,5 @@ export default function useMoviesListSize() {
 		}
 	}
 
-	return { cardsColumns, cardsRows, setCardsRows, MoviesList };
+	return { cardsColumns, cardsRows, setCardsRows, renderList };
 }

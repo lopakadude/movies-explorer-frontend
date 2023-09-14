@@ -5,37 +5,49 @@ import { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
 
 function Movies(props) {
-	const [isLoading, setIsLoading] = useState(false);
+	const checkIsShortFilms =
+	JSON.parse(localStorage.getItem("isShortFilm")) ?? false;
+const [isShortFilm, setIsShortFilm] = useState(checkIsShortFilms);
+const [textError, setTextError] = useState(false);
+
+const handleCheckBox = () => {
+	setIsShortFilm(!isShortFilm);
+	localStorage.setItem("isShortFilm", JSON.stringify(!isShortFilm));
+};
 
 	useEffect(() => {
-		setIsLoading(true);
+		props.setIsLoading(true);
 		const defaultMovies = JSON.parse(localStorage.getItem("filteredMovies"));
 		if (defaultMovies) {
 			if (defaultMovies.length !== 0) {
 				props.setFilteredMovies(
-					props.isShortFilm ? props.filterShortMovies(defaultMovies) : defaultMovies
+					isShortFilm ? props.filterShortMovies(defaultMovies) : defaultMovies
 				);
 			} else {
-				props.setTextSearch("Ничего не найдено");
+				setTextError("Ничего не найдено");
 			}
 		} else { props.setFilteredMovies([]) }
-		setIsLoading(false);
-	}, [isLoading, props.isShortFilm]);
+		props.setIsLoading(false);
+	}, [ isShortFilm, props.filteredMovies]);
 
+
+	console.log("movies");
 	return (
 		<main className="main">
 			<Search
 				onSubmit={props.findMovies}
 				isLoading={props.isLoading}
-				isShortFilm={props.isShortFilm}
-				onChange={props.handleCheckBox} />
-			{props.isLoading && <Preloader />}
+				isShortFilm={isShortFilm}
+				onChange={handleCheckBox} />
+			{props.isLoading ? <Preloader /> : null} 
 			<MoviesList
 				filteredMovies={props.filteredMovies}
 				savedMovies={props.savedMovies}
-				setSavedMovies={props.setSavedMovies} />
+				setSavedMovies={props.setSavedMovies}
+				isLoading={props.isLoading}
+				setIsLoading={props.setIsLoading} />
 			{ props.filteredMovies.length === 0 && <p className="movies__message">
-				{props.textSearch ? props.textSearch : 'Введите ключевое слово'}</p>}
+				{textError ? textError : ''}</p>}
 		</main>
 	)
 }
