@@ -30,6 +30,17 @@ function App() {
 	const navigate = useNavigate();
 	const allMovies = JSON.parse(localStorage.getItem("allMovies")) ?? [];
 
+	useEffect(() => {
+		if (isLoggedIn) {
+		setIsLoading(true);
+		api.getLikeMovies()
+			.then((res) => {
+				setSavedMovies(res.data);
+			})
+			.catch((err) => console.log(`Ошибка: ${err}`))
+			.finally(() => setIsLoading(false));
+		}
+	}, [isLoggedIn])
 
 	useEffect(() => {
 		if (localStorage.getItem('jwt')) {
@@ -40,11 +51,6 @@ function App() {
 					setIsLoggedIn(true);
 					setCurrentUser(res.data);
 					navigate(location.pathname, { replace: true });
-					localStorage.getItem('jwt');
-					localStorage.getItem('allMovies');
-					localStorage.getItem('filteredMovies');
-					localStorage.getItem('request');
-					localStorage.getItem('isShortFilm');
 				})
 				.catch(console.error)
 		}
@@ -112,7 +118,7 @@ function App() {
 			.finally(() => setIsLoading(false));
 	}
 
-	const findMovies = (req) => {
+	const findMovies = (req, isShort) => {
 		setTextSearch("");
 		if (!allMovies.length) {
 			setIsLoading(true);
@@ -120,7 +126,7 @@ function App() {
 				.getMovies()
 				.then((movies) => {
 					localStorage.setItem("allMovies", JSON.stringify(movies));
-					handleFilterMovies(movies, req);
+					handleFilterMovies(movies, req, isShort);
 				})
 				.catch((err) => {
 					console.log(`Ошибка: ${err}`);
@@ -129,7 +135,7 @@ function App() {
 				.finally(() => setIsLoading(false));
 
 		} else {
-			handleFilterMovies(allMovies, req);
+			handleFilterMovies(allMovies, req, isShort);
 		}
 
 		if (location.pathname === '/movies') {
@@ -241,7 +247,8 @@ function App() {
 									isLoading={isLoading}
 									setIsLoading={setIsLoading}
 									isSuccess={isSuccess}
-									setIsSuccess={setIsSuccess}/>
+									setIsSuccess={setIsSuccess}
+									clearError={clearError}/>
 							</>
 						</ProtectedRoute>
 					)} />

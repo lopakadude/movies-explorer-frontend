@@ -14,6 +14,7 @@ function Register(props) {
 			email: values.email,
 			password: values.password
 		})
+		props.clearError();
 	}
 
 	return (
@@ -21,7 +22,7 @@ function Register(props) {
 		{!props.isLoggedIn ?
 		<section className="auth">
 			<div className="auth__container">
-				<Link to="/" className="auth__logo-link link"><img src={logo} alt="Логотип проекта" className="auth__logo" /></Link>
+				<Link to="/" className="auth__logo-link link"><img src={logo} alt="Логотип проекта" className="auth__logo" onClick={props.errorSubmit} /></Link>
 				<h1 className="auth__title">Добро пожаловать!</h1>
 				<form className="auth__form" onSubmit={handleSubmit}>
 					<div className="auth__form-container">

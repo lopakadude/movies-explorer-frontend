@@ -6,14 +6,13 @@ import Preloader from "../Preloader/Preloader";
 
 function Movies(props) {
 	const checkIsShortFilms =
-	JSON.parse(localStorage.getItem("isShortFilm")) ?? false;
-const [isShortFilm, setIsShortFilm] = useState(checkIsShortFilms);
-const [textError, setTextError] = useState(false);
+		JSON.parse(localStorage.getItem("isShortFilm")) ?? false;
+	const [isShortFilm, setIsShortFilm] = useState(checkIsShortFilms);
 
-const handleCheckBox = () => {
-	setIsShortFilm(!isShortFilm);
-	localStorage.setItem("isShortFilm", JSON.stringify(!isShortFilm));
-};
+	const handleCheckBox = () => {
+		setIsShortFilm(!isShortFilm);
+		localStorage.setItem("isShortFilm", JSON.stringify(!isShortFilm));
+	};
 
 	useEffect(() => {
 		props.setIsLoading(true);
@@ -23,12 +22,10 @@ const handleCheckBox = () => {
 				props.setFilteredMovies(
 					isShortFilm ? props.filterShortMovies(defaultMovies) : defaultMovies
 				);
-			} else {
-				setTextError("Ничего не найдено");
-			}
-		} else { props.setFilteredMovies([]) }
+			} 
+		} else {props.setFilteredMovies([])};
 		props.setIsLoading(false);
-	}, [ isShortFilm]);
+	}, [isShortFilm, props.isLoading]);
 
 	return (
 		<main className="main">
@@ -37,15 +34,16 @@ const handleCheckBox = () => {
 				isLoading={props.isLoading}
 				isShortFilm={isShortFilm}
 				onChange={handleCheckBox} />
-			{props.isLoading ? <Preloader /> : null} 
+			{props.isLoading ? <Preloader /> : null}
 			<MoviesList
 				filteredMovies={props.filteredMovies}
 				savedMovies={props.savedMovies}
 				setSavedMovies={props.setSavedMovies}
 				isLoading={props.isLoading}
 				setIsLoading={props.setIsLoading} />
-			{ props.filteredMovies.length === 0 && <p className="movies__message">
-				{textError ? textError : ''}</p>}
+			{props.filteredMovies.length === 0 && <p className="movies__message">
+				{!localStorage.getItem("filteredMovies") && !props.isLoading ? 'Введите ключевое слово' : !props.isLoading && props.filteredMovies.length === 0 ? "Ничего не найдено." : null}</p>}
+				
 		</main>
 	)
 }

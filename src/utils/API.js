@@ -73,28 +73,6 @@ class Api {
 		})
 	}
 
-	_likeCard(cardId) {
-		return this._request(`movies/${cardId}`, {
-			method: 'PUT',
-			headers: this.headers
-		})
-	}
-
-	_unlikeCard(cardId) {
-		return this._request(`movies/${cardId}`, {
-			method: 'DELETE',
-			headers: this.headers
-		})
-	}
-
-	changeLikeCardStatus(cardId, isLiked) {
-		if (!isLiked) {
-			return this._likeCard(cardId)
-		}
-		else {
-			return this._unlikeCard(cardId)
-		}
-	}
 }
 
 export const api = new Api({

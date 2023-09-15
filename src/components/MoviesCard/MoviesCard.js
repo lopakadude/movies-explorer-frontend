@@ -30,7 +30,7 @@ function MoviesCard(props) {
 		} else {return `${hours}ч ${minutes}м`;}
 	}
 
-	const handleSaveMovie = (m) => {
+	const handleSaveMovie = () => {
 		api
 			.saveMovie(card)
 			.then((likedMovie) => {

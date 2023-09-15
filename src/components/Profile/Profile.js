@@ -32,12 +32,8 @@ function Profile(props) {
 			name: currentUser.name,
 			email: currentUser.email,
 		});
-	
+		props.clearError();
 	}, [setValues, currentUser.name, currentUser.email]);
-
-	useEffect(() => {
-		console.log(props.isLoading)
-	});
 
 	useEffect(() => {
 		props.setIsSuccess(false);

@@ -9,7 +9,6 @@ function MoviesList(props) {
 	const location = useLocation();
 	const { cardsColumns, cardsRows, setCardsRows, renderList } = useMoviesListSize();
 	const properMoviesAmount = cardsRows * cardsColumns;
-	const filteredMovies = props.filteredMovies
 	const buttonMoreIsActive = (location.pathname === '/movies') && props.filteredMovies && (props.filteredMovies.length > properMoviesAmount);
 
 
@@ -23,21 +22,22 @@ function MoviesList(props) {
 		}
 	});
 
-	useEffect(() => {
-		props.setIsLoading(true);
-		api.getLikeMovies()
-			.then((res) => {
-				props.setSavedMovies(res.data);
-			})
-			.catch((err) => console.log(`Ошибка: ${err}`))
-			.finally(() => props.setIsLoading(false));
-	}, [])
+
+	// useEffect(() => {
+	// 	props.setIsLoading(true);
+	// 	api.getLikeMovies()
+	// 		.then((res) => {
+	// 			props.setSavedMovies(res.data);
+	// 		})
+	// 		.catch((err) => console.log(`Ошибка: ${err}`))
+	// 		.finally(() => props.setIsLoading(false));
+	// }, [])
 
 	useEffect(() => {
 		if (props.filteredMovies) {
 			renderList();
 		}
-	}, [filteredMovies])
+	}, [props.filteredMovies])
 
 	function handleButtonMore() {
 		if (cardsColumns === 1) {

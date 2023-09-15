@@ -11,11 +11,10 @@ function SearchForm(props) {
 	function handleSubmit(evt) {
 		evt.preventDefault();
 		props.onSubmit(
-			values.textSearch
+			values.textSearch,
+			props.isShortFilm
 		);
-
 	}
-
 
 	useEffect(() => {
 		if (location.pathname === '/movies') {
@@ -27,7 +26,7 @@ function SearchForm(props) {
 				errors.textSearch = false;
 			}
 		}
-	}, [setValues, location.pathname]);
+	}, [setValues, location.pathname, props.isShortFilm]);
 
 
 	return (
