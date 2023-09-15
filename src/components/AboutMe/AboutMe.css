@@ -1,0 +1,191 @@
+.about-me {
+	min-height: 969px;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me {
+		min-height: 902px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me {
+		min-height: 1198px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__container {
+		margin-left: 14px;
+		margin-right: 14px;
+	}
+}
+
+.about-me__title {
+	margin-top: 112px;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__title {
+		margin-top: 92px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__title {
+		margin-top: 70px;
+	}
+}
+
+.about-me__title:after {
+	margin-bottom: 66px;
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__title:after {
+		margin-bottom: 60px;
+	}
+}
+
+.about-me__raw {
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	margin: 0 0 101px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__raw {
+		margin-bottom: 90px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__raw {
+		flex-direction: column-reverse;
+		align-items: center;
+		margin-bottom: 70px;
+	}
+}
+
+.about-me__container-text {
+	padding: 0;
+	margin: 0;
+	max-width: 600px;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__container-text {
+		max-width: 364px;
+	}
+}
+
+.about-me__name {
+	color: #FFF;
+	font-size: 50px;
+	font-weight: 400;
+	line-height: 58px;
+	letter-spacing: -2px;
+	padding: 0;
+	margin: 0 0 19px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__name {
+		font-size: 40px;
+		line-height: 40px;
+		letter-spacing: -1.6px;
+		margin-bottom: 16px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__name {
+		font-size: 30px;
+		line-height: normal;
+		letter-spacing: -1.2px;
+		margin-bottom: 20px;
+	}
+}
+
+.about-me__job {
+	display: block;
+	color: #FFF;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 20px;
+	padding: 0;
+	margin: 0 0 25px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__job {
+		font-size: 12px;
+		line-height: 18px;
+		letter-spacing: normal;
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__job {
+		font-size: 11px;
+		line-height: 16px;
+		letter-spacing: normal;
+	}
+}
+
+.about-me__info {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	padding: 0;
+	margin: 0 0 54px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__info {
+		font-size: 12px;
+		line-height: 18px;
+		margin-bottom: 51px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__info {
+		font-size: 11px;
+		line-height: 16px;
+		margin-bottom: 40px;
+	}
+}
+
+.about-me__link {
+	text-decoration: none;
+	color: #FFF;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.about-me__photo {
+	display: block;
+	width: 270px;
+	height: 327px;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+	.about-me__photo {
+		width: 255px;
+		height: 307px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.about-me__photo {
+		width: 91.25vw;
+		height: 352px;
+		margin-bottom: 40px;
+	}
+}

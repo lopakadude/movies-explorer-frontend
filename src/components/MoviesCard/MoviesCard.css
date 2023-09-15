@@ -1,0 +1,146 @@
+.card-movie {
+	width: 364px;
+	height: 281px;
+	border-radius: 6px;
+	background-color: #222;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+@media screen and (min-width: 1280px) {
+	.card-movie {
+		width: 364px;
+	}
+}
+
+@media screen and (max-width: 1279px) {
+	.card-movie {
+		width: 339px;
+		height: 262px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.card-movie {
+		width: 300px;
+		height: 237px;
+	}
+}
+
+.card-movie__trailer-link {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.card-movie__photo {
+	width: 100%;
+	height: 203px;
+	display: block;
+	padding: 0;
+	margin: 0 0 9px 0;
+	object-fit: cover;
+	object-position: center;
+}
+
+@media screen and (max-width: 1240px) {
+	.card-movie__photo {
+		height: 190px;
+		margin-bottom: 8px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.card-movie__photo {
+		height: 168px;
+		margin-bottom: 7px;
+	}
+}
+
+.card-movie__container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 11px;
+	padding: 0 16px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+@media screen and (max-width: 1240px) {
+	.card-movie__container {
+		margin-bottom: 7px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.card-movie__container {
+		margin-bottom: 6px;
+		padding-right: 10px;
+		padding-left: 14px;
+	}
+}
+
+.card-movie__name {
+	color: #FFF;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 0;
+	margin: 0;
+}
+
+.card-movie__like-button {
+	width: 31px;
+	height: 31px;
+	background-image: url(../../images/like.svg);
+	background-color: #222;
+	border: none;
+	margin: 0;
+	padding: 0;
+	opacity: 1;
+	transition: opacity 1s ease;
+}
+
+.card-movie__like-button_active {
+	background-image: url('../../images/active-like.svg');
+}
+
+.card-movie__like-button:hover {
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+.card-movie__delete-button {
+	border: none;
+	width: 30px;
+	height: 30px;
+	background-color: #222;
+	background-image: url('../../images/delete-card.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0;
+	transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+	.card-movie__delete-button {
+		opacity: 1;
+	}
+}
+
+.card-movie__delete-button_active {
+	opacity: 1;
+}
+
+.card-movie__duration {
+	color: #8B8B8B;
+	font-size: 11px;
+	font-weight: 400;
+	padding: 0 0 16px 16px;
+	margin: 0;
+}
+
+@media screen and (max-width: 560px) {
+	.card-movie__duration {
+		padding-left: 14px;
+	}
+}
