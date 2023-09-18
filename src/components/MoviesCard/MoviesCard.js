@@ -10,6 +10,8 @@ function MoviesCard(props) {
 
 	const [isActiveRemoveClass, setIsActiveRemoveClass] = useState('card-movie__delete-button button')
 	const [isLikeActive, setIsLikeActive] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+
 
 	const handleMouseEnter = (e) => {
 		setIsActiveRemoveClass('card-movie__delete-button card-movie__delete-button_active button')
@@ -31,6 +33,7 @@ function MoviesCard(props) {
 	}
 
 	const handleSaveMovie = () => {
+		setIsLoading(true);
 		api
 			.saveMovie(card)
 			.then((likedMovie) => {
@@ -38,9 +41,11 @@ function MoviesCard(props) {
 				card._id = likedMovie.data._id;
 			})
 			.catch((err) => console.log(`Ошибка: ${err}`))
+			.finally(() => setIsLoading(false))
 	}
 
 	const handleDeleteMovie = () => {
+		setIsLoading(true);
 		api
 			.deleteMovie(card)
 			.then(( res ) => {
@@ -50,6 +55,7 @@ function MoviesCard(props) {
 				props.setSavedMovies(savedMovies);
 			})
 			.catch((err) => console.log(`Ошибка: ${err}`))
+			.finally(() => setIsLoading(false))
 	};
 
 	useEffect(()=> {
@@ -81,8 +87,8 @@ function MoviesCard(props) {
 			</a>
 			<div className="card-movie__container">
 				<h6 className="card-movie__name">{card.nameRU}</h6>
-				{location.pathname === '/movies' ? <button className={`card-movie__like-button ${isLikeActive ? 'card-movie__like-button_active' : ''}`} onClick={likeToggle}></button> :
-					<button className={isActiveRemoveClass} onClick={handleDeleteMovie}></button>}
+				{location.pathname === '/movies' ? <button className={`card-movie__like-button ${isLikeActive ? 'card-movie__like-button_active' : ''}`} onClick={likeToggle} disabled={isLoading ? true : false}></button> :
+					<button className={isActiveRemoveClass} onClick={handleDeleteMovie} disabled={isLoading ? true : false}></button>}
 			</div>
 			<p className="card-movie__duration">{toHoursAndMinutes(card.duration)}</p>
 		</li>

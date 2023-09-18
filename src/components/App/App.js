@@ -40,7 +40,7 @@ function App() {
 			.catch((err) => console.log(`Ошибка: ${err}`))
 			.finally(() => setIsLoading(false));
 		}
-	}, [isLoggedIn])
+	}, [isLoggedIn, location])
 
 	useEffect(() => {
 		if (localStorage.getItem('jwt')) {
